@@ -30,8 +30,7 @@ public class Application {
                 Map.entry(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"),
                 Map.entry(GROUP_ID_CONFIG, "followsclosley-group-id"),
                 Map.entry(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class),
-                Map.entry(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class),
-                Map.entry(AUTO_OFFSET_RESET_CONFIG, "latest")
+                Map.entry(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class)
         );
 
         // Create and configure Kafka consumer
