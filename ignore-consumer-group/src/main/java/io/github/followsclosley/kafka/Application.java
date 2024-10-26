@@ -25,9 +25,6 @@ public class Application {
      */
     public static void main(String[] args) {
 
-        String bootstrapServers = "127.0.0.1:9092";
-        String topic = "followsclosley-topic";
-
         // Create consumer configuration properties
         Map<String, Object> properties = Map.ofEntries(
                 Map.entry(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"),
@@ -38,9 +35,9 @@ public class Application {
         );
 
         // Create and configure Kafka consumer
-        try(KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties))
+        try(KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties))
         {
-            TopicPartition partition = new TopicPartition(topic, 0);
+            TopicPartition partition = new TopicPartition("followsclosley-topic", 0);
             List<TopicPartition> partitions = List.of(partition);
             consumer.assign(partitions);
 
@@ -59,6 +56,8 @@ public class Application {
                 for (ConsumerRecord<String, String> record : records){
                     System.out.println(
                       "Key: " + record.key() + "Partition: " + record.partition() + ", Offset:" + record.offset() + ", Value: " + record.value());
+
+                    keepOnReading = !"end".equals(record.value());
                 }
             }
         }
