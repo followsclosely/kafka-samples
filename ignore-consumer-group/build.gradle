@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.followsclosley'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "io.github.followsclosley.kafka.Application"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    implementation 'org.slf4j:slf4j-simple:1.7.32'
+}
