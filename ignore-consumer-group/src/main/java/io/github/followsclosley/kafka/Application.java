@@ -14,7 +14,8 @@ import java.util.Map;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 /**
- * The Application class demonstrates a simple Kafka consumer that reads messages from a specified topic.
+ * The Application class demonstrates a simple Kafka consumer that reads the last
+ * messages from a specified topic.
  */
 public class Application {
 
